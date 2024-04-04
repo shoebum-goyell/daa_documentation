@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="jm library API docs, for the Dart programming language.">
+  <title>jm library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">Convex Hull</a></li>
+    <li class="self-crumb">Jarvis March</li>
+  </ol>
+  <div class="self-name">Jarvis March</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar=""
+      data-below-sidebar="Widgets_jm&#47;Widgets_jm-library-sidebar.html">
+      
+
+      <h1>Jarvis March Algorithm: A Detailed Overview</h1>
+    <p>The Jarvis March algorithm, also known as the "Gift Wrapping" algorithm, is renowned for its straightforward approach to determining the convex hull of a set of points in the plane. This document explores the Jarvis March algorithm's workings, focusing on its key procedures and effectiveness.</p>
+
+    <h2>Fundamental Concepts</h2>
+    <p>To comprehend the algorithm's operations fully, it is essential to grasp a few underlying concepts:</p>
+    <ul>
+        <li><strong>Convex Hull</strong>: The smallest convex shape that encloses all points in a given dataset.</li>
+        <li><strong>Orientation</strong>: The directional relationship between three points, used to identify the most counterclockwise path.</li>
+        <li><strong>Colinear Points</strong>: Points lying on the same straight line, specifically handled to ensure the hull's accuracy.</li>
+    </ul>
+
+    <h2>Algorithmic Steps</h2>
+    <ol>
+        <li><strong>Starting Point</strong>: Identifies the leftmost point (minimum x-coordinate) as the starting point of the hull.</li>
+        <li><strong>Wrapping Process</strong>: Iteratively searches for the next point that forms the most counterclockwise angle with the current point and the rest of the set, effectively "wrapping" the points.</li>
+        <li><strong>Completion</strong>: Continues the wrapping process until it returns to the starting point, thereby completing the convex hull.</li>
+        <li><strong>Handling Colinear Points</strong>: When colinear points are encountered, the algorithm selects the farthest point to include all relevant boundary points.</li>
+    </ol>
+
+    <h2>Key Functions in Implementation</h2>
+    <p>The implementation of the Jarvis March algorithm in Dart leverages several critical functions:</p>
+    <ul>
+        <li><code>orientation</code>: Determines the orientation (clockwise, counterclockwise, colinear) of three points.</li>
+        <li><code>distanceSquared</code>: Calculates the square of the distance between two points, useful for identifying the farthest colinear point.</li>
+        <li><code>pointInPolygon</code>: Checks if a given point is within the polygon, aiding in the hull's construction.</li>
+    </ul>
+
+    <h2>Visualization and Efficiency</h2>
+    <p>While the Jarvis March algorithm is intuitive and simple, its efficiency is most notable when dealing with a small number of points on the hull relative to the total number of points. The step-by-step nature of the algorithm also lends itself well to visualization, allowing for an educational exploration of computational geometry concepts.</p>
+
+    <h2>Conclusion</h2>
+    <p>With its methodical approach and ease of understanding, the Jarvis March algorithm serves as a fundamental technique in computational geometry for convex hull calculation. Its implementation in Dart not only highlights key programming concepts but also offers a tangible method for exploring geometric algorithms.</p>
+</body>
+</html>
+
+
+
+
+
+
+
+    <section class="summary offset-anchor" id="properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="jmfin" class="property">
+  <span class="name"><a href="../Widgets_jm/jmfin.html">jmfin</a></span>
+  <span class="signature">&#8596; <a href="../Widgets_Custom_Point/animatedPointsjm-class.html">animatedPointsjm</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="functions">
+      <h2>Functions</h2>
+
+      <dl class="callables">
+        <dt id="convexHull" class="callable">
+  <span class="name"><a href="../Widgets_jm/convexHull.html">convexHull</a></span><span class="signature">(<wbr><span class="parameter" id="convexHull-param-points"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span>&gt;</span></span> <span class="parameter-name">points</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Function to compute the convex hull of a set of points using Jarvis March algorithm
+  
+
+</dd>
+
+        <dt id="distanceSquared" class="callable">
+  <span class="name"><a href="../Widgets_jm/distanceSquared.html">distanceSquared</a></span><span class="signature">(<wbr><span class="parameter" id="distanceSquared-param-p"><span class="type-annotation"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span> <span class="parameter-name">p</span>, </span><span class="parameter" id="distanceSquared-param-q"><span class="type-annotation"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span> <span class="parameter-name">q</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Function to calculate the squared distance between two points
+  
+
+</dd>
+
+        <dt id="jarvisMarch" class="callable">
+  <span class="name"><a href="../Widgets_jm/jarvisMarch.html">jarvisMarch</a></span><span class="signature">(<wbr><span class="parameter" id="jarvisMarch-param-points"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span>&gt;</span></span> <span class="parameter-name">points</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../Widgets_Custom_Point/animatedPointsjm-class.html">animatedPointsjm</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Function to compute the convex hull of a set of points using Jarvis March algorithm
+  
+
+</dd>
+
+        <dt id="orientation" class="callable">
+  <span class="name"><a href="../Widgets_jm/orientation.html">orientation</a></span><span class="signature">(<wbr><span class="parameter" id="orientation-param-p"><span class="type-annotation"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span> <span class="parameter-name">p</span>, </span><span class="parameter" id="orientation-param-q"><span class="type-annotation"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span> <span class="parameter-name">q</span>, </span><span class="parameter" id="orientation-param-r"><span class="type-annotation"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span> <span class="parameter-name">r</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Initialize animation data
+Function to determine the orientation of three points (p, q, r). It uses the slope format and some mathematical simplification in order to generate an equation to find the direction of another point (in this case r) with respect to 2 given points (in this case p and q)
+Returns:
+0 if points are collinear
+1 if points are in a clockwise orientation
+2 if points are in a counterclockwise orientation
+  
+
+</dd>
+
+        <dt id="pointInPolygon" class="callable">
+  <span class="name"><a href="../Widgets_jm/pointInPolygon.html">pointInPolygon</a></span><span class="signature">(<wbr><span class="parameter" id="pointInPolygon-param-point"><span class="type-annotation"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span> <span class="parameter-name">point</span>, </span><span class="parameter" id="pointInPolygon-param-polygon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span>&gt;</span></span> <span class="parameter-name">polygon</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Function to check if a point is inside a polygon. It uses a ray tracing method, where it draws an infinite ray toward the right from the point. The number of times the ray intersects with the polygon's sides is counted. The point is inside the polygon if the number of intersections is odd. If the number of intersections is even, then the point is outside the polygon.
+  
+
+</dd>
+
+      </dl>
+    </section>
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">Convex Hull</a></li>
+    <li class="self-crumb">Jarvis March</li>
+</ol>
+
+
+    <h5><span class="package-name">Convex Hull</span> </h5>
+    <ol>
+      <li class="section-title">Algorithms</li>
+
+      <li><a href="../Widgets_jm/Widgets_jm-library.html">Jarvis March</a></li>
+      <li><a href="../Widgets_kps/Widgets_kps-library.html">Kirkpatrick-Seidel</a></li>
+
+</ol>
+
+  </div>
+
+
+</main>
+
+<footer>
+  <span class="no-break">
+    convex_hull
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

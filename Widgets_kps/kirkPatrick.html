@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the kirkPatrick function from the kps library, for the Dart programming language.">
+  <title>kirkPatrick function - kps library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">convex_hull</a></li>
+    <li><a href="../Widgets_kps/Widgets_kps-library.html">Widgets&#47;kps.dart</a></li>
+    <li class="self-crumb">kirkPatrick function</li>
+  </ol>
+  <div class="self-name">kirkPatrick</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="Widgets_kps&#47;Widgets_kps-library-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-function">kirkPatrick</span> function 
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+
+<span class="returntype"><a href="../Widgets_Custom_Point/animatedPoints-class.html">animatedPoints</a></span>
+<span class="name ">kirkPatrick</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="kirkPatrick-param-points"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span>&gt;</span></span> <span class="parameter-name">points</span></span></li>
+</ol>)
+
+        
+
+    </section>
+    
+<section class="desc markdown">
+  <p>The main function for the Kirkpatrick-Seidel algorithm.
+It computes the convex hull of a set of points by combining the upper and lower hulls.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">animatedPoints kirkPatrick(List&lt;Custom_Point&gt; points) {
+
+  points.sort((a, b) =&gt; a.x.compareTo(b.x));
+  Custom_Point pumin = findPumin(points);
+  Custom_Point pumax = findPumax(points);
+  Custom_Point plmin = findPlmin(points);
+  Custom_Point plmax = findPlmax(points);
+  print(pumin);
+  print(pumax);
+  print(plmin);
+  print(plmax);
+  Line medianLine = findMedianLine(points);
+
+  List&lt;Custom_Point&gt; upperHullP = upperHull(pumin, pumax, points);
+
+  List&lt;Custom_Point&gt; lowerHullP = lowerHull(plmin, plmax, points);
+  &#47;&#47;&#47; Prepare the final convex hull by combining the upper and lower hulls and removing duplicates.
+  upperHullP.sort((a, b) =&gt; a.x.compareTo(b.x));
+  lowerHullP.sort((a, b) =&gt; b.x.compareTo(a.x));
+  lowerHullP = lowerHullP.toSet().toList();
+  upperHullP = upperHullP.toSet().toList();
+  lowerHullP = removeConsecutiveDuplicates(lowerHullP);
+  upperHullP = removeConsecutiveDuplicates(upperHullP);
+  List &lt;Custom_Point&gt; convexHull = [];
+  convexHull.addAll(upperHullP);
+  convexHull.addAll(lowerHullP);
+  convexHull.add(upperHullP[0]);
+  fin.final_convex_hull = convexHull;
+  return(fin);
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">convex_hull</a></li>
+    <li><a href="../Widgets_kps/Widgets_kps-library.html">kps</a></li>
+    <li class="self-crumb">kirkPatrick function</li>
+</ol>
+
+
+    <h5>kps library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    convex_hull
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

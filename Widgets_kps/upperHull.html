@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the upperHull function from the kps library, for the Dart programming language.">
+  <title>upperHull function - kps library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">convex_hull</a></li>
+    <li><a href="../Widgets_kps/Widgets_kps-library.html">Widgets&#47;kps.dart</a></li>
+    <li class="self-crumb">upperHull function</li>
+  </ol>
+  <div class="self-name">upperHull</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="Widgets_kps&#47;Widgets_kps-library-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-function">upperHull</span> function 
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span>&gt;</span></span>
+<span class="name ">upperHull</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="upperHull-param-pUmin"><span class="type-annotation"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span> <span class="parameter-name">pUmin</span>, </span></li>
+<li><span class="parameter" id="upperHull-param-pUmax"><span class="type-annotation"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span> <span class="parameter-name">pUmax</span>, </span></li>
+<li><span class="parameter" id="upperHull-param-points"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../Widgets_Custom_Point/Custom_Point-class.html">Custom_Point</a></span>&gt;</span></span> <span class="parameter-name">points</span></span></li>
+</ol>)
+
+        
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Constructs the upper hull of the convex hull by recursively finding upper bridges and removing points within the hull.
+This is a divide-and-conquer approach that builds the upper part of the convex hull.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">List&lt;Custom_Point&gt; upperHull(Custom_Point pUmin, Custom_Point pUmax, List &lt;Custom_Point&gt; points) {
+  &#47;&#47;&#47; Base case: the points themselves form part of the upper hull.
+  if(points.length &lt;= 2){
+    upperBridgePoints.add(points);
+    Ordered.add([points,[],[]]);
+    return points;
+  }
+  List&lt;Custom_Point&gt; pointsCopy = List.from(points);
+  Line medianLine = findMedianLine(points);
+  Line ubridge = findUpperBridge(pointsCopy,medianLine);
+  List&lt;Custom_Point&gt; temp = [];
+  temp.add(pUmin);
+
+  temp.add(ubridge.p1);
+  temp.add(ubridge.p2);
+
+  temp.add(pUmax);
+  fin.upperBridgePoints.add(temp);
+  List&lt;Custom_Point&gt; pointsToRemove = [];
+  List&lt;Custom_Point&gt; uBridgePoints = [];
+  uBridgePoints.add(pUmin);
+  uBridgePoints.add(ubridge.p1);
+  uBridgePoints.add(ubridge.p2);
+  uBridgePoints.add(pUmax);
+  uBridgePoints.add(pUmin);
+  &#47;&#47;&#47; Remove points that are inside the polygon formed by the upper bridge and the extreme points.
+  fin.quadrilateral.add(uBridgePoints);
+  for (int i = 0; i &lt; pointsCopy.length; i++) {
+        if (pointInPolygon(pointsCopy[i], uBridgePoints) &amp;&amp; !uBridgePoints.contains(pointsCopy[i])) {
+          pointsToRemove.add(pointsCopy[i]);
+        }
+  }
+  fin.removedPoints.add(pointsToRemove);
+  for (int i = 0; i &lt; pointsToRemove.length; i++) {
+        pointsCopy.remove(pointsToRemove[i]);
+  }
+  &#47;&#47;&#47; Divide the remaining points based on their position relative to the upper bridge for recursive computation.
+  List&lt;Custom_Point&gt; tLeft = [];
+  List&lt;Custom_Point&gt; tRight = [];
+  double slopeULeft = (uBridgePoints[1].y - pUmin.y)&#47;(uBridgePoints[1].x - pUmin.x); &#47;&#47;&#47; Slope of the line from pUmin to the left point of the upper bridge.
+  double yInterceptULeft = uBridgePoints[1].y - (slopeULeft * uBridgePoints[1].x); &#47;&#47;&#47; Y-intercept of the same line.
+  for(int i = 0; i &lt; pointsCopy.length; i++) {
+    double yIntercept = pointsCopy[i].y - (pointsCopy[i].x * slopeULeft);
+    if(yIntercept &gt; yInterceptULeft) {
+      tLeft.add(pointsCopy[i]);
+    }
+  }
+  tLeft.add(uBridgePoints[1]);
+  double slopeURight = (pUmax.y - uBridgePoints[2].y)&#47;(pUmax.x - uBridgePoints[2].x); &#47;&#47;&#47; Slope of the line from pUmax to the right point of the upper bridge.
+  double yInterceptURight = uBridgePoints[2].y - (slopeURight * uBridgePoints[2].x); &#47;&#47;&#47; Y-intercept of the same line.
+  for(int i = 0; i &lt; pointsCopy.length; i++) {
+    double yIntercept = pointsCopy[i].y - (pointsCopy[i].x * slopeURight);
+    if(yIntercept &gt; yInterceptURight) {
+      tRight.add(pointsCopy[i]); &#47;&#47;&#47; Points above the line are part of the right set.
+    }
+  }
+  tRight.add(uBridgePoints[2]); &#47;&#47;&#47; Include the bridge point in the set for recursion.
+  &#47;&#47;&#47; Recursively construct the upper hull for the left and right subsets.
+  List&lt;Custom_Point&gt; upperHullLeft = upperHull(pUmin,uBridgePoints[1],tLeft);
+  List&lt;Custom_Point&gt; upperHullRight = upperHull(uBridgePoints[2],pUmax,tRight);
+  List&lt;Custom_Point&gt; upperHullFinal = [];
+  upperHullFinal.addAll(uBridgePoints);
+  upperHullFinal.addAll(upperHullLeft);
+  upperHullFinal.addAll(upperHullRight);
+  Ordered.add([temp,uBridgePoints,pointsToRemove]);
+  return upperHullFinal; &#47;&#47;&#47; Return the complete list of points forming the upper hull.
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">convex_hull</a></li>
+    <li><a href="../Widgets_kps/Widgets_kps-library.html">kps</a></li>
+    <li class="self-crumb">upperHull function</li>
+</ol>
+
+
+    <h5>kps library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    convex_hull
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+
